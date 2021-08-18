@@ -12,12 +12,16 @@
 <body>
   <div class="container">
     <h2>Pig Latin</h2>
-    <form id="word-counter">
+    <form id="translator">
       <div class="form-group">
-
-        <button type="submit" class="btn btn-success"></button>
+        <label for="englishWord">Input a word:</label>
+        <input id="englishWord" class="form-control" type="text" placeholder="One Word Only" required>
+        <button type="submit" class="btn btn-success" id="translate">Translate!</button>
       </div>
     </form>
+    <div id="latinWord">
+
+    </div>
 
 </body>
 
