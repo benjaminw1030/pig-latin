@@ -9,7 +9,7 @@
 // move the first consonants to the end of a word with multiple consonants //
 // add ay after moving consonants //
 // count y as a consonant, not a vowel //
-// move q and u together as "qu" and add way
+// move q and u together as "qu" and add ay
 // do this regardless of capitalization
 // stretch goal: ignore punctuation
 
@@ -19,25 +19,34 @@
 function addWay(word) {
   let wordArray = word.split("");
   const vowels = ["a", "i", "o", "u", "e"];
-  for (let i = 0; i < vowels.length; i += 1) {
-    if (vowels[i] === wordArray[0]) {
-      return word + "way";
-    } else {
-      let consonants = []
-      for (let i = 0; i < wordArray.length; i += 1) {
-        if (!vowels.includes(wordArray[i])) {
-          consonants.push(wordArray[i]);
-        } else {
-          break;
+  if (wordArray[0] === "q" && wordArray[1] === "u") {
+    sliceWord = wordArray.slice(2);
+    const newWord = sliceWord.join('');
+    return newWord + "quay";
+  } else {
+    for (let i = 0; i < vowels.length; i += 1) {
+      if (vowels[i] === wordArray[0]) {
+        return word + "way";
+      } else {
+        let consonants = []
+        for (let i = 0; i < wordArray.length; i += 1) {
+          if (wordArray[i] === "q" && wordArray[i + 1] === "u") {
+            break;
+          }
+          else if (!vowels.includes(wordArray[i])) {
+            consonants.push(wordArray[i]);
+          } else { 
+            break;
+          }
         }
+        sliceWord = wordArray.slice(consonants.length).concat(consonants);
+        const newWord = sliceWord.join('');
+        return newWord + "ay";
       }
-      sliceWord = wordArray.slice(consonants.length).concat(consonants);
-      const newWord = sliceWord.join('');
-      return newWord + "ay";
     }
   }
 }
-addWay("threat");
+addWay("tsddfqzazl");
 
 // wordArray.forEach(function (element) {
 //   if (!uniqueArray.includes(element)) {
